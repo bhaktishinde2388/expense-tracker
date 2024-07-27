@@ -12,7 +12,23 @@ app.use(cors());
 
 // mongodb connection
 
-const connsctDB = async ()=>{};
+const connectDB = async ()=>{
+    const connection = await mongoose.connect(process.env.MONGO_URL)
+
+    if (connection){
+        console.log("mongoodb is connected successfully😄")
+    }
+    else{
+        console.log("mongodb is not conected😣")
+    }
+};
+connectDB();
+
+app.get('/',(req,res)=>{
+    res.json({
+        message:`welcome to Expense Tracker API`
+    })
+})
 
 const PORT= process.env.PORT || 5000
 
