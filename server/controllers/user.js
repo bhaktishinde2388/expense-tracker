@@ -1,3 +1,5 @@
+import User from "../models/User.js";
+
 const signup = async (req,res)=>{
     const {name,email,password,dob} = req.body;
 
@@ -42,14 +44,14 @@ const login =async (req,res)=>{
     if (user) {
       return res.json({
         success: true,
-        message: "Login successful",
+        message: "Login successful🙂",
         data: user
       })
     }
     else {
       return res.json({
         success: false,
-        message: "Invalid credentials",
+        message: "Invalid input !!!!!🤨",
         data: null
       })
     }
