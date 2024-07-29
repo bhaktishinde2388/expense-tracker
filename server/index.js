@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 import { signup,login } from "./controllers/user.js";
+import { postTransaction } from "./controllers/transaction.js";
 
 
 
@@ -35,6 +36,8 @@ app.get('/',(req,res)=>{
 app.post('/login', login)
 
 app.post("/signup", signup)
+
+app.post("/transaction",postTransaction)
 
 const PORT= process.env.PORT || 5000;
 
