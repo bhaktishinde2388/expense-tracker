@@ -25,12 +25,48 @@ const postTransaction = async (req,res)=>{
       catch (e) {
         res.json({
           success: false,
-          message: e.message,
+          message: e.message, 
           data: null
         })
       }
     }
 
 
+    const getTransactions = async (req,res) =>{
+      const {userId}= req.query;
 
-export {postTransaction}
+      const user = await User.findById(userId)
+
+      if(!user){
+        return res.json({
+          success:false,
+          data:null,
+          message:"user not found........"
+        })
+      }
+
+      const transactions = await Transaction.find({user:userId}).sort({ createdAt: -1});
+      res.json({
+        success: true,
+        message:"transation successfully fetched....",
+        data:transactions
+      })
+    }
+
+
+
+    const deleteTransaction = async (req, res) => {
+      const {id} = req.params;
+    
+      await Transaction.deleteOne({_id: id});
+      res.json({
+          success: true,
+          message:"transation deleted!!!!!!!!!!",
+          data: null
+        })
+      }
+      
+
+export {postTransaction,
+  getTransactions,deleteTransaction
+}
