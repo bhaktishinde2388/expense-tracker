@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { useEffect,useState} from 'react'
+import { useEffect} from 'react'
+import "./Home.css"
+import toast, {Toaster} from 'react-hot-toast'
 
 function Home() {
 const [user,setUser]=useState('')
@@ -18,7 +20,21 @@ if(!currentUser){
 
   return (
     <div>
-      <h1>Welcome To Expense Tracker</h1>
+      <h1 className='user-greeting'>Hello {user.name}</h1>
+      <h3 className='heading'>Welcome To Expense Tracker</h3>
+
+      <span className='logout'
+      onClick={()=>{
+        localStorage.clear()
+        toast.success("logout successfully")
+        setTimeout(()=>{
+          window.location.href = '/'
+        }, 2000)
+      }}
+      
+      >Logout</span>
+
+      <Toaster/>
     </div>
   )
 }

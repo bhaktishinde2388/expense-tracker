@@ -1,0 +1,16 @@
+.logout
+{
+    position:fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    color: red;
+    cursor: pointer;
+}
+
+.logout:hover
+{
+   
+   font-weight: bolder;
+   
+}
