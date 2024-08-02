@@ -41,7 +41,7 @@ function SignUp() {
     <div>
         <h1>User Registration</h1>
 
-        <form className='signup-form-container'>
+        <form className='form-container'>
             <input type="text"
              placeholder="Enter Full Name"
               className='input-box'
@@ -88,6 +88,8 @@ function SignUp() {
 export default SignUp
 
 
+
+// OR
 
 // import React, { useState } from 'react'
 // import "./SignUp.css"

@@ -1,0 +1,18 @@
+.input-box
+{
+    display: block;
+    margin: 20px auto;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+.form-container
+{
+    border: 2px solid gray;
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+}
