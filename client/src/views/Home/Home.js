@@ -25,10 +25,16 @@ const loadTransactions = async () => {
   if(!user._id){
     return
   }
+  toast.loading('Loading transactions...')
 
   const response = await axios.get(`${process.env.REACT_APP_API_URL}/transactions?userId=${user._id}`)
-
+ toast.dismiss()
+ 
   setTransactions(response.data.data)
+
+  useEffect(() => {
+    loadTransactions()
+  }, [user])
 
   return (
     <div>
