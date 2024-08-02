@@ -5,6 +5,7 @@ import toast, {Toaster} from 'react-hot-toast'
 
 function Home() {
 const [user,setUser]=useState('')
+const [transactions, setTransactions] = useState([])
 
 useEffect(() => {
 const currentUser = JSON.parse(localStorage.getItem('currentUser'))
