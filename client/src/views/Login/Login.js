@@ -22,6 +22,8 @@ function Login() {
 
      toast.loading('Redirecting to dashboard...')
 
+
+     //after 3000 this time the page redirect on home page
      setTimeout(()=>{
        window.location.href = '/'
      }, 3000)
@@ -52,7 +54,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           />
 
-<button type='button' 
+ <button type='button' 
             className='register-btn'
             onClick={login}
             >Login</button>

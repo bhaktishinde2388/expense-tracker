@@ -9,6 +9,7 @@ const signup = async (req,res)=>{
         password,
         dob:new Date(dob)
     });
+    
  
       try {
     const savedUser = await user.save();
