@@ -1,14 +1,18 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useState } from 'react'
+import { useEffect,useState} from 'react'
 
 function Home() {
-
+const [user,setUser]=useState('')
 
 useEffect(() => {
-const readCurrentUser = JSON.parse(localStorage.getItem('readCurrentUser'))
+const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+if(currentUser){
+  setUser(currentUser)
+}
 
-if(!readCurrentUser){
-  window.location.href= '/login'
+
+if(!currentUser){
+  window.location.href='/login'
 }
 },[])
 
