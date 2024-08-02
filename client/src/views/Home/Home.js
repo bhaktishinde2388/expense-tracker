@@ -19,6 +19,17 @@ if(!currentUser){
 }
 },[])
 
+
+
+const loadTransactions = async () => {
+  if(!user._id){
+    return
+  }
+
+  const response = await axios.get(`${process.env.REACT_APP_API_URL}/transactions?userId=${user._id}`)
+
+  setTransactions(response.data.data)
+
   return (
     <div>
       <h1 className='user-greeting'>Hello {user.name}</h1>
