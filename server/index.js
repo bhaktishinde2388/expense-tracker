@@ -12,7 +12,7 @@ app.use(cors());
 
 import { signup,login } from "./controllers/user.js";
 import { postTransaction,getTransactions,deleteTransaction } from "./controllers/transaction.js";
-import Transaction from "./models/Transaction.js";
+// import Transaction from "./models/Transaction.js";
 
 
 

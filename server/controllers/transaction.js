@@ -4,7 +4,7 @@ import User from "../models/User.js";
 const postTransaction = async (req,res)=>{
     const {title, amount, category, type, user} = req.body;
 
-    const   transaction = new Transaction({
+    const transaction = new Transaction({
         title,
         amount,
         category,

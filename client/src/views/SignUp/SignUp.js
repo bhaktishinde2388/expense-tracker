@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./SignUp.css"
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
+
 function SignUp() {
   const [name,setName] = useState("")
   const [email,setEmail] = useState("")
