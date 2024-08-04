@@ -1,0 +1,55 @@
+.transaction-card-container
+{
+    background-color: rgb(221, 234, 234);
+    border: 2px solid gray;
+    height: auto;
+    padding: 30px;
+    margin: 20px;
+ position: relative;
+}
+.title
+{
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.amount
+{
+    position: absolute;
+    right: 10px;
+    font-size: 25px;
+    top: 10px;
+}
+.createdAt
+{
+    position: absolute;
+    right: 10px;
+    font-size: 15px;
+    bottom: 20px;
+
+}
+
+.category
+{
+    position: absolute;
+    right: 10px;
+    font-size: 17px;
+    bottom: -20px;
+    background-color: yellowgreen;
+    padding: 5px;
+    border-radius: 10px;
+    width: 80px;
+    text-align: center;
+}
+.type
+{
+    position: absolute;
+    right: 120px;
+    font-size: 17px;
+    bottom: -20px;
+    background-color: rgb(205, 179, 50);
+    padding: 5px;
+    border-radius: 10px;
+    width: 80px;
+    text-align: center;
+}
