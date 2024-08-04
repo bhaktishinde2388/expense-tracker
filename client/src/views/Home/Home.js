@@ -46,7 +46,7 @@ const loadTransactions = async () => {
 
   return (
     <div>
-      <h1 className='user-greeting'>Hello {user.name}</h1>
+      <h1 className='user-greeting'>Hello.... <span className='user-greeting-name'>{user.name}😊</span></h1>
       <h3 className='heading'>Welcome To Expense Tracker</h3>
 
       <span className='logout'

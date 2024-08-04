@@ -14,3 +14,20 @@
    font-weight: bolder;
    
 }
+.user-greeting
+{
+    font-size: 30px;
+    text-align: center;
+  
+}
+.user-greeting-name
+{
+    font-size: 30px;
+    text-align: center;
+    color: tomato;
+}
+.heading
+{
+    font-size: 30px;
+    text-align: center;
+}
