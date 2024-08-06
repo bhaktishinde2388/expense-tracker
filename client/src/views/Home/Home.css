@@ -31,3 +31,29 @@
     font-size: 30px;
     text-align: center;
 }
+
+/* net balance */
+
+.net-transactions-container
+{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+  
+}
+
+.net-transactions-value-item
+{
+    display: block;
+    text-align: center;
+    border: 2px solid gray;
+    box-shadow: 5px 4px 4px 1px gray;
+    padding: 20px;
+    margin: 10px;
+    width: 200px;
+}
+.net-transactions-value-title
+{
+    display: block;
+    text-align: center;
+}
