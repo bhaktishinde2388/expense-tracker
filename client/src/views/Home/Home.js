@@ -123,7 +123,10 @@ const loadTransactions = async () => {
         }
         </div>
       <Toaster/>
+      <Link to="/addTransaction">
       <img src={AddImage} className='add-img'/>
+      </Link>
+
     </div> 
 
   )
