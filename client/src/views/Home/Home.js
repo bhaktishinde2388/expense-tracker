@@ -5,6 +5,8 @@ import toast, {Toaster} from 'react-hot-toast'
 import axios from "axios"
 import {Link} from "react-router-dom"
 import TransactionCard from '../../components/TransactionCard/TransactionCard.js'
+import AddImage from "./add (1).png"
+
 
 function Home() {
 const [user,setUser]=useState('')
@@ -43,7 +45,7 @@ const loadTransactions = async () => {
   setTransactions(allTransactions)
 }
 
-
+ 
   useEffect(() => {
     loadTransactions()
   }, [user])
@@ -83,17 +85,17 @@ const loadTransactions = async () => {
 
 {/* net balance......... */}
 <div className='net-transactions-container'>
-  <div className='net-transactions-value-item'>
+  <div className='net-transactions-value-item green'>
        <span className='net-transaction-value-amount'>+ {netIncome}</span>
-       <p className='net-transaction-value-title' >Net Income</p>
+       <p className='net-transaction-value-title ' >Net Income</p>
   </div>
-
-  <div className='net-transactions-value-item'>
+  <span >➕</span>
+  <div className='net-transactions-value-item red'>
        <span className='net-transaction-value-amount'>- {netExpense}</span>
        <p className='net-transaction-value-title' >Net Expense</p>
   </div>
-
-  <div className='net-transactions-value-item'>
+=
+  <div className='net-transactions-value-item yellow'>
        <span className='net-transaction-value-amount'>+ {netIncome - netExpense}</span>
        <p className='net-transaction-value-title' >Net Balance</p>
   </div>
@@ -101,7 +103,7 @@ const loadTransactions = async () => {
 {/* ......... */}
 </div>
 
-
+<div className='transaction-container'>
     {
       transactions.map((transaction) => {
             const {_id, title, amount, category, type, createdAt} = transaction
@@ -119,8 +121,11 @@ const loadTransactions = async () => {
             />)
           })
         }
+        </div>
       <Toaster/>
-    </div>
+      <img src={AddImage} className='add-img'/>
+    </div> 
+
   )
 }
 

@@ -4,6 +4,7 @@ import {RouterProvider, createBrowserRouter} from "react-router-dom"
 import Home from "./views/Home/Home.js"
 import Login from "./views/Login/Login.js"
 import SignUp from './views/SignUp/SignUp.js'
+import AddTransaction from './views/AddTransaction/AddTransaction.js'
 import "./global.css"
 
 const root=ReactDOM.createRoot(document.getElementById("root"))
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
 {
     path:"/signup",
     element:<SignUp/>
+},
+{
+    path:"/addTransaction",
+    element:<AddTransaction/>
 },
 {
     path:"*",

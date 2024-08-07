@@ -39,6 +39,10 @@
     display: flex;
     justify-content: space-around;
     font-size: 20px;
+    .green 
+    {
+        background-color: #c4f9c1;
+    }    
   
 }
 
@@ -51,9 +55,39 @@
     padding: 20px;
     margin: 10px;
     width: 200px;
+   
 }
 .net-transactions-value-title
 {
     display: block;
     text-align: center;
+}
+
+
+.transaction-container
+{
+    max-height: 400px;
+    overflow-y:scroll;
+}
+
+.green 
+{
+    background-color: #c4f9c1;
+}
+
+.red
+{
+    background-color: #ee6767;
+}
+
+.yellow
+{
+    background-color: #f0e478;
+}
+.add-img
+{
+    height: 70px;
+    position: fixed;
+    right: 30px;
+    bottom: 50px;
 }
