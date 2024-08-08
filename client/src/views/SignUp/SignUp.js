@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./SignUp.css"
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function SignUp() {
   const [name,setName] = useState("")
@@ -80,6 +81,8 @@ function SignUp() {
             className='btn1'
             onClick={signup}
             >Register</button>
+
+<Link to='/login' className='signup'>Already have an account? Login</Link>
         </form> 
         <Toaster/>
     </div>
