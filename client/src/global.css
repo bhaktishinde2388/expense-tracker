@@ -9,10 +9,40 @@
 }
 .form-container
 {
-    border: 2px solid gray;
     width: 500px;
     height: auto;
     display: block;
-    margin: 20px auto;
+    margin: 40px auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 60px;
     border-radius: 10px;
+    background-color: rgb(238, 190, 100);
+    border: 2px solid gray;
+}
+.btn1
+{
+    display: block;
+    margin: auto;
+    font-size: 20px;
+border-radius: 10px;
+ background-color: rgb(230, 212, 158);
+cursor: pointer;padding: 10px;
+}
+.btn1:hover
+{
+  
+
+background-color: rgb(71, 255, 178);
+transition: 1sec;
+
+}
+body
+{
+    background-color: rgb(231, 221, 208);
+}
+.heading
+{
+    text-align: center;
+    margin: 40px;
 }

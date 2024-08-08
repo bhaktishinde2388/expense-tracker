@@ -35,8 +35,8 @@ function Login() {
 
   return (
     <div>
-      <h1  className='login-heading'>Login</h1>
-
+      
+<h1 className='heading'>Login</h1>
       <form className='form-container'>
       <input
           type='email'
@@ -55,12 +55,12 @@ function Login() {
           />
 
  <button type='button' 
-            className='register-btn'
+            className='btn1'
             onClick={login}
             >Login</button>
       </form>
       
-      <Link to='/signup'>Don't have an account? Signup</Link>
+      <Link to='/signup' className='signup' >Don't have an account? Signup</Link>
 
       <Toaster/>
     </div>

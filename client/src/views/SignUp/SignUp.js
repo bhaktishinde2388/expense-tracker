@@ -40,7 +40,7 @@ function SignUp() {
 
   return (
     <div>
-        <h1>User Registration</h1>
+        <h1 className='heading'>User Registration</h1>
 
         <form className='form-container'>
             <input type="text"
@@ -77,7 +77,7 @@ function SignUp() {
               />
 
             <button type='button' 
-            className='register-btn'
+            className='btn1'
             onClick={signup}
             >Register</button>
         </form> 
