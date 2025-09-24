@@ -41,8 +41,8 @@ const loadTransactions = async () => {
 
 
   toast.dismiss()
-
-  setTransactions(allTransactions)
+//  setTransactions(allTransactions)
+  setTransactions(allTransactions || [])
 }
 
  
