@@ -12,8 +12,8 @@ function Login() {
 
   const login = async() => {
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-      email: email,
-      password: password
+      email,
+      password
     })
     if(response.data.success){
       toast.success(response.data.message)
