@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 function SignUp() {
   const [name,setName] = useState("")
   const [email,setEmail] = useState("")
-  const [password,setPassword] = useState(0)
+  const [password,setPassword] = useState("")
   const [dob,setDob] = useState("")
  
   const signup = async ()=>{
