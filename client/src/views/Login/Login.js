@@ -10,21 +10,21 @@ function Login() {
   const [password, setPassword] = useState('')
 
   const login = async() => {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`,{
       email: email,
       password: password
     })
     if(response.data.success){
       toast.success(response.data.message)
 
-      localStorage.setItem('currentUser', JSON.stringify(response.data.data))
+      localStorage.setItem('currentUser',JSON.stringify(response.data.data))
 
      toast.loading('Redirecting to dashboard...')
 
 
      //after 3000 this time the page redirect on home page
      setTimeout(()=>{
-       window.location.href = '/'
+       window.location.href ='/'
      }, 3000)
     }else{
       toast.error(response.data.message)

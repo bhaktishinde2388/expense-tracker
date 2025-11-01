@@ -3,13 +3,54 @@ import User from "../models/User.js";
 const signup = async (req,res)=>{
     const {name,email,password,dob} = req.body;
 
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "name, email and password are required",
+    });
+  }
+  //regex validations
+  const emailValidationRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const nameValidationRegex = /^[a-zA-Z ]+$/;
+  const passwordValidationRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      if (nameValidationRegex.test(name) === false) {
+    return res.status(400).json({
+      success: false,
+      message: "Name should contain only alphabets and spaces",
+    });
+  }
+
+  if (emailValidationRegex.test(email) == false) {
+    return res.status(400).json({
+      success: false,
+      message: "Email is not valid",
+    });
+  }
+
+  if (passwordValidationRegex.test(password) === false) {
+    return res.status(400).json({
+      success: false,
+      message:
+        "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character",
+    });
+  }
+
     const user = new User({
         name,
         email,
         password,
         dob:new Date(dob)
     });
-    
+
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.status(400).json({
+      success: false,
+      message: `User with email ${email} already exists`,
+    });
+  } 
  
       try {
     const savedUser = await user.save();
@@ -33,52 +74,29 @@ const signup = async (req,res)=>{
 
 // login
 
-// const login =async (req,res)=>{
+const login =async (req,res)=>{
   
-//     const { email, password } = req.body;
+    const { email, password } = req.body;
 
-//     const user = await User.findOne({
-//       email: email,
-//       password: password
-//     });
-  
-//     if (user) {
-//       return res.json({
-//         success: true,
-//         message: "Login successful🙂",
-//         data: user
-//       })
-//     }
-//     else {
-//       return res.json({
-//         success: false,
-//         message: "Invalid input !!!!!🤨",
-//         data: null
-//       })
-//     }
-// }
-
-
-const login = async () => {
-  try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-      email,
-      password
+    const user = await User.findOne({
+      email: email,
+      password: password
     });
-    if (response.data.success) {
-      toast.success(response.data.message);
-      localStorage.setItem('currentUser', JSON.stringify(response.data.data));
-      toast.loading('Redirecting to dashboard...');
-      setTimeout(() => window.location.href = '/', 3000);
-    } else {
-      toast.error(response.data.message);
+  
+    if (user) {
+      return res.json({
+        success: true,
+        message: "Login successful🙂",
+        data: user
+      })
     }
-  } catch (error) {
-    toast.error("Something went wrong!");
-    console.error(error);
-  }
-};
-
-export {signup,
-    login
+    else {
+      return res.json({
+        success: false,
+        message: "Invalid input !!!!!🤨",
+        data: null
+      })
+    }
 }
+
+export {signup,login}

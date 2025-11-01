@@ -2,19 +2,21 @@ import  express from "express"
 import mongoose from "mongoose";
 import cors from "cors"
 import dotenv from "dotenv"
-dotenv.config();
 
+import { signup,login } from "./controllers/user.js";
+import { postTransaction,getTransactions,deleteTransaction } from "./controllers/transaction.js";
+
+dotenv.config();
 
 
 const app = express();
 app.use(express.json());
-app.use(cors());
 
-import { signup,login } from "./controllers/user.js";
-import { postTransaction,getTransactions,deleteTransaction } from "./controllers/transaction.js";
+app.use(cors({
+  origin: 'https://expense-tracker-ui-97iz.onrender.com'
+}));
+
 // import Transaction from "./models/Transaction.js";
-
-
 
 // mongodb connection
 
@@ -26,7 +28,7 @@ const connectDB = async ()=>{
     }
     
 };
-connectDB();
+
 
 app.get('/',(req,res)=>{
     res.json({
@@ -34,7 +36,7 @@ app.get('/',(req,res)=>{
     })
 })
 
-app.post('/login', login)
+app.post("/login", login)
 
 app.post("/signup", signup)
 
@@ -48,4 +50,5 @@ const PORT= process.env.PORT || 2000;
 
 app.listen(PORT,() =>{
     console.log(`Server is running on port ${PORT}`)
+    connectDB();
 })
