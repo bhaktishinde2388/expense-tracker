@@ -12,9 +12,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(cors({
-  origin: 'https://expense-tracker-ui-97iz.onrender.com'
-}));
+app.use(cors());
 
 // import Transaction from "./models/Transaction.js";
 
@@ -46,7 +44,7 @@ app.get("/transactions",getTransactions)
 
 app.delete("/transaction/:id",deleteTransaction )
 
-const PORT= process.env.PORT || 2000;
+const PORT= process.env.PORT || 5000;
 
 app.listen(PORT,() =>{
     console.log(`Server is running on port ${PORT}`)

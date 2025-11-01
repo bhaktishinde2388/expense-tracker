@@ -1,7 +1,7 @@
+import axios from "axios";
 import "./Login.css"
 import { useState } from 'react'
 import toast, {Toaster} from 'react-hot-toast'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 function Login() {
@@ -25,7 +25,7 @@ function Login() {
      //after 3000 this time the page redirect on home page
      setTimeout(()=>{
        window.location.href ='/'
-     }, 3000)
+     }, 2000)
     }else{
       toast.error(response.data.message)
     }
