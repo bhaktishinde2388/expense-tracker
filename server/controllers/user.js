@@ -33,30 +33,51 @@ const signup = async (req,res)=>{
 
 // login
 
-const login =async (req,res)=>{
+// const login =async (req,res)=>{
   
-    const { email, password } = req.body;
+//     const { email, password } = req.body;
 
-    const user = await User.findOne({
-      email: email,
-      password: password
-    });
+//     const user = await User.findOne({
+//       email: email,
+//       password: password
+//     });
   
-    if (user) {
-      return res.json({
-        success: true,
-        message: "Login successful🙂",
-        data: user
-      })
+//     if (user) {
+//       return res.json({
+//         success: true,
+//         message: "Login successful🙂",
+//         data: user
+//       })
+//     }
+//     else {
+//       return res.json({
+//         success: false,
+//         message: "Invalid input !!!!!🤨",
+//         data: null
+//       })
+//     }
+// }
+
+
+const login = async () => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+      email,
+      password
+    });
+    if (response.data.success) {
+      toast.success(response.data.message);
+      localStorage.setItem('currentUser', JSON.stringify(response.data.data));
+      toast.loading('Redirecting to dashboard...');
+      setTimeout(() => window.location.href = '/', 3000);
+    } else {
+      toast.error(response.data.message);
     }
-    else {
-      return res.json({
-        success: false,
-        message: "Invalid input !!!!!🤨",
-        data: null
-      })
-    }
-}
+  } catch (error) {
+    toast.error("Something went wrong!");
+    console.error(error);
+  }
+};
 
 export {signup,
     login
