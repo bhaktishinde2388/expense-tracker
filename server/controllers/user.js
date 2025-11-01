@@ -37,20 +37,22 @@ const signup = async (req,res)=>{
     });
   }
 
-    const user = new User({
-        name,
-        email,
-        password,
-        dob:new Date(dob)
-    });
-
+  //existness 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     return res.status(400).json({
       success: false,
       message: `User with email ${email} already exists`,
     });
-  } 
+  }
+
+    const user = new User({
+        name,
+        email,
+        password,
+        dob:new Date(dob)
+    });
+    
  
       try {
     const savedUser = await user.save();
