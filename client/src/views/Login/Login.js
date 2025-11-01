@@ -1,4 +1,3 @@
-import React from 'react'
 import "./Login.css"
 import { useState } from 'react'
 import toast, {Toaster} from 'react-hot-toast'
@@ -12,8 +11,8 @@ function Login() {
 
   const login = async() => {
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-      email,
-      password
+      email: email,
+      password: password
     })
     if(response.data.success){
       toast.success(response.data.message)
