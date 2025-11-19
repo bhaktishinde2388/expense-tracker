@@ -1,7 +1,7 @@
 import User from "./../models/User.js";
 
-const signup = async (req,res)=>{
-    const {name,email,password,dob} = req.body;
+const signup = async (req, res) => {
+  const { name, email, password, dob } = req.body;
 
   if (!name || !email || !password) {
     return res.status(400).json({
@@ -15,7 +15,7 @@ const signup = async (req,res)=>{
   const passwordValidationRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-      if (nameValidationRegex.test(name) === false) {
+  if (nameValidationRegex.test(name) === false) {
     return res.status(400).json({
       success: false,
       message: "Name should contain only alphabets and spaces",
@@ -46,22 +46,26 @@ const signup = async (req,res)=>{
     });
   }
 
-    const user = new User({
-        name,
-        email,
-        password,
-        dob:new Date(dob)
-    });
-    
- 
-      try {
+  const user = await User.create({
+    name,
+    email,
+    password,
+    dob: new Date(dob)
+  });
+
+
+  try {
     const savedUser = await user.save();
 
     res.json({
       success: true,
+      //jwt.....
+      token: await user.generateToken(),
+      userId: user._id.toString(),
+      //...........
       message: `Signup successfully...........`,
-      data: savedUser
-    })
+      // data: savedUser ............data show here
+    });
   }
   catch (e) {
     res.json({
@@ -76,9 +80,9 @@ const signup = async (req,res)=>{
 
 // login
 
-const login =async (req,res)=>{
-  
-    const { email, password } = req.body;
+const login = async (req, res) => {
+
+  const { email, password } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({
@@ -87,25 +91,25 @@ const login =async (req,res)=>{
     });
   }
 
-    const user = await User.findOne({
-      email: email,
-      password: password
-    });
-  
-    if (user) {
-      return res.json({
-        success: true,
-        message: "Login successful🙂",
-        data: user
-      })
-    }
-    else {
-      return res.json({
-        success: false,
-        message: "Invalid input !!!!!🤨",
-        data: null
-      })
-    }
+  const user = await User.findOne({
+    email: email,
+    password: password
+  });
+
+  if (user) {
+    return res.json({
+      success: true,
+      message: "Login successful🙂",
+      data: user
+    })
+  }
+  else {
+    return res.json({
+      success: false,
+      message: "Invalid input !!!!!🤨",
+      data: null
+    })
+  }
 }
 
-export {signup,login}
+export { signup, login }
