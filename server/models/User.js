@@ -27,21 +27,22 @@ const userSchema = new Schema({
 //json web token
 
 //instance method  .....with the helpof this  we can create multiple methods
-userSchema.methods.generateToken = async  function(){
+userSchema.methods.generateToken = function(){
 try{
  return jwt.sign({
   //payload
   userId:this._id.toString(),
   email:this.email,
-  isAdmin:this.isAdmin,
+  isAdmin:this.isAdmin || false,
  },
 process.env.JWT_SECRATE_KEY,
 {
   expiresIn:"1d",
 }
 )
-}catch(error){
-console.error(error);
+}catch (error) {
+    console.error("JWT generation failed:", error);
+    return null;
 }
 }
 

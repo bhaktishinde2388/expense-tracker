@@ -6,12 +6,23 @@ import toast, {Toaster} from 'react-hot-toast'
 
 function TransactionCard({ _id , title, amount, category, type,createdAt,loadTransactions}) {
   const deleteTransaction = async () => {
-    const response = await axios.delete(`${process.env.REACT_APP_API_URL}/transaction/${_id}`)
+     try {
+    const token = localStorage.getItem("token"); // get JWT
+
+    const response = await axios.delete(`${process.env.REACT_APP_API_URL}/transaction/${_id}`,
+      { headers: { Authorization: `Bearer ${token}` } } // send token
+    )
 
     toast.success(response.data.message)
 
-    loadTransactions()
+    loadTransactions();
+  }catch (error) {
+    console.error(error);
+    toast.error(error.response?.data?.message || "Failed to delete transaction");
   }
+};
+
+
   return (
     
   <div className='transaction-card-container'>

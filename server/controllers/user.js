@@ -1,5 +1,8 @@
 import User from "./../models/User.js";
 
+
+
+// SIGNUP
 const signup = async (req, res) => {
   const { name, email, password, dob } = req.body;
 
@@ -9,27 +12,28 @@ const signup = async (req, res) => {
       message: "name, email and password are required",
     });
   }
-  //regex validations
+
+  // regex validations
   const emailValidationRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const nameValidationRegex = /^[a-zA-Z ]+$/;
   const passwordValidationRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
-  if (nameValidationRegex.test(name) === false) {
+  if (!nameValidationRegex.test(name) ) {
     return res.status(400).json({
       success: false,
       message: "Name should contain only alphabets and spaces",
     });
   }
 
-  if (emailValidationRegex.test(email) == false) {
+  if (!emailValidationRegex.test(email)) {
     return res.status(400).json({
       success: false,
       message: "Email is not valid",
     });
   }
 
-  if (passwordValidationRegex.test(password) === false) {
+  if (!passwordValidationRegex.test(password) ) {
     return res.status(400).json({
       success: false,
       message:
@@ -37,7 +41,7 @@ const signup = async (req, res) => {
     });
   }
 
-  //existness 
+  // check if user exists
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     return res.status(400).json({
@@ -46,42 +50,41 @@ const signup = async (req, res) => {
     });
   }
 
+  // create user
+   // create user
   const user = await User.create({
     name,
     email,
     password,
-    dob: new Date(dob)
+    dob: new Date(dob),
   });
 
-
   try {
-    const savedUser = await user.save();
+    const token = user.generateToken();
+    if (!token) {
+      return res.status(500).json({
+        success: false,
+        message: "Token generation failed",
+      });
+    }
 
     res.json({
       success: true,
-      //jwt.....
-      token: await user.generateToken(),
+      message: "Signup successful!",
       userId: user._id.toString(),
-      //...........
-      message: `Signup successfully...........`,
-      // data: savedUser ............data show here
+      token, // JWT
     });
-  }
-  catch (e) {
-    res.json({
+  } catch (e) {
+    res.status(500).json({
       success: false,
       message: e.message,
-      data: null
-    })
+      data: null,
+    });
   }
-}
+};
 
-
-
-// login
-
+// LOGIN
 const login = async (req, res) => {
-
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -91,25 +94,24 @@ const login = async (req, res) => {
     });
   }
 
-  const user = await User.findOne({
-    email: email,
-    password: password
-  });
+  const user = await User.findOne({ email, password });
 
   if (user) {
+    const token = user.generateToken();
     return res.json({
       success: true,
-      message: "Login successful🙂",
-      data: user
-    })
-  }
-  else {
-    return res.json({
+      message: "Login successful 🙂",
+      userId: user._id.toString(),
+      token,
+    });
+  } else {
+    return res.status(400).json({
       success: false,
-      message: "Invalid input !!!!!🤨",
-      data: null
-    })
+      message: "Invalid email or password",
+      data: null,
+    });
   }
-}
+};
 
-export { signup, login }
+
+export { signup, login };

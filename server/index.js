@@ -2,6 +2,7 @@ import  express from "express"
 import mongoose from "mongoose";
 import cors from "cors"
 import dotenv from "dotenv"
+import { verifyToken } from "./middleware/auth.js";
 
 import { signup,login } from "./controllers/user.js";
 import { postTransaction,getTransactions,deleteTransaction } from "./controllers/transaction.js";
@@ -38,11 +39,11 @@ app.post("/login", login)
 
 app.post("/signup", signup)
 
-app.post("/transaction",postTransaction)
+app.post("/transaction",verifyToken,postTransaction)
 
-app.get("/transactions",getTransactions)
+app.get("/transactions",verifyToken,getTransactions)
 
-app.delete("/transaction/:id",deleteTransaction )
+app.delete("/transaction/:id",verifyToken,deleteTransaction )
 
 const PORT= process.env.PORT || 5000;
 

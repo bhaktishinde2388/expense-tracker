@@ -2,8 +2,9 @@ import Transaction from "../models/Transaction.js";
 import User from "../models/User.js";
 
 const postTransaction = async (req,res)=>{
-    const {title, amount, category, type, user} = req.body;
+    const {title, amount, category, type} = req.body;
 
+     const user = req.user._id; // get userId from middleware
     const transaction = new Transaction({
         title,
         amount,
@@ -33,7 +34,7 @@ const postTransaction = async (req,res)=>{
 
 
     const getTransactions = async (req,res) =>{
-      const {userId}= req.query;
+      const userId = req.user._id; // get userId from middleware
 
       const user = await User.findById(userId)
 
